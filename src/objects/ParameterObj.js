@@ -1,5 +1,5 @@
 class ParameterObj {
-  constructor(area1, area2, area3, lowValue, highValue) {
+  constructor(area1, area2, area3, timeGathered, lowValue, highValue) {
     this.average = calcAreaAverage(area1, area2, area3);
     this.area1 = area1;
     this.area2 = area2;

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1062519445936",
+    "project_id": "e-sentry",
+    "storage_bucket": "e-sentry.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062519445936:android:ca6e263371c1a7be2fde75",
+        "android_client_info": {
+          "package_name": "com.esentry"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062519445936-l4c1thfjeveic45e9gl74t7qipfds6ud.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.esentry",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1062519445936-n3cc8jd7gauhiv6dtjlvr0l5d58ncfhb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmqrNBgOJXLoWoV04_kJRIkVKBDZ_EnVU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062519445936-n3cc8jd7gauhiv6dtjlvr0l5d58ncfhb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

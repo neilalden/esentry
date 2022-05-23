@@ -1,10 +1,11 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import LanguageContextProvider from './src/context/LanguageContext';
+import DataContextProvider from './src/context/DataContext';
 import Header from './src/sections/Header';
 import WavesIco from './src/icons/WavesIco';
-import DataContextProvider from './src/context/DataContext';
+
 const App = () => {
-  console.log('Rerendering app.js');
+  console.log('Rerendering App.js');
   return (
     <Fragment>
       <LanguageContextProvider>

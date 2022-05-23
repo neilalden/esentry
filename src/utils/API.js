@@ -1,43 +1,38 @@
-import {API_URL} from '@env';
-import PHObj from '../objects/PHObj';
+import firestore from '@react-native-firebase/firestore';
 import TemperatureObj from '../objects/TemperatureObj';
+import PHObj from '../objects/PHObj';
+import SalinityObj from '../objects/SalinityObj';
+import AmmoniumObj from '../objects/AmmoniumObj';
+import NitrateObj from '../objects/NitrateObj';
+import ChlorideObj from '../objects/ChlorideObj';
+
 const fetchData = async () => {
+  // firestore()
+  //   .collection('records')
+  //   .get()
+  //   .then(querySnapshot => {
+  //     querySnapshot.forEach(doc => {
+  //       console.log(doc.data());
+  //     });
+  //   })
+  //   .catch(e => console.log(e));
+
   const dataArr = [];
   dataArr.push(new TemperatureObj(24.96, 24.6, 24.81));
   dataArr.push(new PHObj(9.44, 9.43, 9.44));
+  dataArr.push(new SalinityObj(-0.02, -0.02, -0.02));
+  dataArr.push(new AmmoniumObj(45.98, 45.9, 45.97));
+  dataArr.push(new NitrateObj(44.98, 44.93, 44.92));
+  dataArr.push(new ChlorideObj(0, 0, 0));
 
   return dataArr;
 };
-const fetchForecastData = async () => {
-  return await '{}';
+const fetchHourlyForecastData = async () => {
+  return [];
 };
 
-export {fetchData, fetchForecastData};
-/*
- {
-  area1: {
-    temperature: 24.96,
-    pH: 9.44,
-    salinity: -0.02,
-    ammonium: 45.9,
-    nitrate: 45.93,
-    chloride: 0,
-  },
-  area2: {
-    temperature: 24.6,
-    pH: 9.43,
-    salinity: -0.02,
-    ammonium: 45.98,
-    nitrate: 45.91,
-    chloride: 0,
-  },
-  area3: {
-    temperature: 24.81,
-    pH: 9.44,
-    salinity: -0.02,
-    ammonium: 45.77,
-    nitrate: 45.98,
-    chloride: 0,
-  },
-}
-*/
+const fetchDailyForecastData = async () => {
+  return [];
+};
+
+export {fetchData, fetchHourlyForecastData, fetchDailyForecastData};

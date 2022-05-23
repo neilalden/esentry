@@ -10,23 +10,26 @@ const styles = StyleSheet.create({
   headerContainer: {
     height: 250,
   },
-  headerNavButtonContainer: {
+  jumbotronNavContainer: {
     flexDirection: 'row',
-    marginTop: 10,
   },
-  headerNavButton: {
+  jumbotronNavButtonContainer: {
+    height: 50,
+    width: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  jumbotronNavButton: {
     height: 15,
     width: 15,
     borderRadius: BORDERCIRCLE,
     backgroundColor: PRIMARY3,
-    marginHorizontal: 10,
   },
-  headerNavButtonActive: {
+  jumbotronNavButtonActive: {
     height: 15,
     width: 30,
     borderRadius: BORDERCIRCLE,
     backgroundColor: PRIMARY1,
-    marginHorizontal: 10,
   },
   loadingContainer: {
     height: '110%',
