@@ -19,7 +19,7 @@ const LanguageContextProvider = props => {
       console.log('getLanguagePreference', e);
     }
   };
-  const setLanguagePreference = async () => {
+  const toggleLanguagePreference = async () => {
     const isFilipino = language === 'FILIPINO';
     if (isFilipino) setLanguage('ENGLISH');
     else setLanguage('FILIPINO');
@@ -30,12 +30,11 @@ const LanguageContextProvider = props => {
       });
       await AsyncStorage.setItem('language', json);
     } catch (e) {
-      console.log('setLanguagePreference', e);
+      console.log('toggleLanguagePreference', e);
     }
   };
   return (
-    <LanguageContext.Provider
-      value={{language, setLanguage, setLanguagePreference}}>
+    <LanguageContext.Provider value={{language, toggleLanguagePreference}}>
       {props.children}
     </LanguageContext.Provider>
   );

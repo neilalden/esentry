@@ -1,30 +1,39 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState, createContext, useEffect} from 'react';
-import {fetchData} from '../utils/API';
+import {fetchData, fetchForecastData} from '../utils/API';
 export const DataContext = createContext();
 
 const DataContextProvider = props => {
   const [data, setData] = useState([]);
+  const [hourlyForecastData, setHourlyForecastData] = useState([]);
+  const [dailyForecastData, setDailyForecastData] = useState([]);
   const [currentParameter, setCurrentParameter] = useState(0);
   useEffect(() => {
     const handleFetch = async () => {
-      setData(await fetchData());
+      fetchData().then(res => {
+        setData(res);
+        fetchForecastData('HOURS').then(ress => {
+          setHourlyForecastData(ress);
+          fetchForecastData('DAYS').then(resss => {
+            setDailyForecastData(resss);
+          });
+        });
+      });
     };
-    setTimeout(() => handleFetch(), 3000);
+    setTimeout(() => handleFetch(), 1000);
   }, []);
 
   const changeCurrentParameter = index => {
     setCurrentParameter(index);
   };
-  // EVENTS
 
   return (
     <DataContext.Provider
       value={{
         data,
-        setData,
+        hourlyForecastData,
+        dailyForecastData,
         currentParameter,
-        setCurrentParameter,
         changeCurrentParameter,
       }}>
       {props.children}

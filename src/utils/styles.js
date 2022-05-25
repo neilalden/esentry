@@ -1,4 +1,7 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
+export const NUNITOBOLD = 'Nunito-Bold';
+export const NUNITOREGULAR = 'Nunito-Regular';
+export const LIGHT1 = '#FFF';
 export const DARK1 = '#000';
 export const DARK2 = '#313235';
 export const BORDERBOX = 15;
@@ -6,6 +9,8 @@ export const BORDERCIRCLE = 50;
 export const PRIMARY1 = '#0099FF';
 export const PRIMARY2 = '#6DC3FD';
 export const PRIMARY3 = '#9CD7FE';
+export const WINDOWWIDTH =
+  Dimensions.get('window').width < 450 ? Dimensions.get('window').width : 450;
 const styles = StyleSheet.create({
   headerContainer: {
     height: 250,
@@ -41,6 +46,9 @@ const styles = StyleSheet.create({
   container: {
     margin: 15,
   },
+  selfCenter: {
+    alignSelf: 'center',
+  },
   viewCenter: {
     alignItems: 'center',
   },
@@ -53,6 +61,8 @@ const styles = StyleSheet.create({
   },
   flexWrap: {
     flexWrap: 'wrap',
+  },
+  jCenter: {
     justifyContent: 'center',
   },
   spaceBetween: {
@@ -64,11 +74,63 @@ const styles = StyleSheet.create({
     width: '100%',
     position: 'absolute',
   },
+  mapCoverImage: {
+    height: 300,
+    width: WINDOWWIDTH,
+    position: 'absolute',
+  },
   glass: {
     backgroundColor: 'rgba( 232, 244, 253, 0.4)',
     borderRadius: BORDERBOX,
     padding: BORDERBOX,
-    height: 150,
+  },
+  light1: {
+    color: LIGHT1,
+  },
+  backgroundColorPrimary1: {
+    backgroundColor: PRIMARY1,
+  },
+  backgroundColorPrimary2: {
+    backgroundColor: PRIMARY2,
+  },
+  backgroundColorPrimary3: {
+    backgroundColor: PRIMARY3,
+  },
+  pt1: {
+    paddingTop: 2,
+  },
+  pt2: {
+    paddingTop: 4,
+  },
+  pt3: {
+    paddingTop: 6,
+  },
+  pt4: {
+    paddingTop: 8,
+  },
+  pt5: {
+    paddingTop: 10,
+  },
+  pt6: {
+    paddingTop: 12,
+  },
+  pb1: {
+    paddingBottom: 2,
+  },
+  pb2: {
+    paddingBottom: 4,
+  },
+  pb3: {
+    paddingBottom: 6,
+  },
+  pb4: {
+    paddingBottom: 8,
+  },
+  pb5: {
+    paddingBottom: 10,
+  },
+  pb6: {
+    paddingBottom: 12,
   },
   pv1: {
     paddingVertical: 2,
@@ -105,6 +167,42 @@ const styles = StyleSheet.create({
   },
   ph6: {
     paddingHorizontal: 12,
+  },
+  mt1: {
+    marginTop: 2,
+  },
+  mt2: {
+    marginTop: 4,
+  },
+  mt3: {
+    marginTop: 6,
+  },
+  mt4: {
+    marginTop: 8,
+  },
+  mt5: {
+    marginTop: 10,
+  },
+  mt6: {
+    marginTop: 12,
+  },
+  mb1: {
+    marginBottom: 2,
+  },
+  mb2: {
+    marginBottom: 4,
+  },
+  mb3: {
+    marginBottom: 6,
+  },
+  mb4: {
+    marginBottom: 8,
+  },
+  mb5: {
+    marginBottom: 10,
+  },
+  mb6: {
+    marginBottom: 12,
   },
   mv1: {
     marginVertical: 2,
@@ -145,58 +243,49 @@ const styles = StyleSheet.create({
   h1: {
     color: DARK1,
     fontSize: 48,
-    fontFamily: 'Nunito-Bold',
+    fontFamily: NUNITOBOLD,
   },
   h2: {
     color: DARK1,
     fontSize: 28,
-    fontFamily: 'Nunito-Bold',
+    fontFamily: NUNITOBOLD,
   },
   h3: {
     color: DARK1,
     fontSize: 24,
-    fontFamily: 'Nunito-Bold',
+    fontFamily: NUNITOBOLD,
   },
   p1: {
     color: DARK1,
     fontSize: 18,
-    fontFamily: 'Nunito-Regular',
+    fontFamily: NUNITOREGULAR,
   },
   p2: {
     color: DARK1,
     fontSize: 16,
-    fontFamily: 'Nunito-Regular',
+    fontFamily: NUNITOREGULAR,
   },
   p3: {
     color: DARK1,
     fontSize: 14,
-    fontFamily: 'Nunito-Regular',
+    fontFamily: NUNITOREGULAR,
   },
   p3: {
     color: DARK1,
     fontSize: 12,
-    fontFamily: 'Nunito-Regular',
-  },
-  p4: {
-    color: DARK1,
-    fontSize: 10,
-    fontFamily: 'Nunito-Regular',
-  },
-  p5: {
-    color: DARK1,
-    fontSize: 8,
-    fontFamily: 'Nunito-Regular',
-  },
-  p5: {
-    color: DARK1,
-    fontSize: 6,
-    fontFamily: 'Nunito-Regular',
+    fontFamily: NUNITOREGULAR,
   },
   w100: {
     width: '100%',
   },
   h100: {
     height: '100%',
+  },
+  brBox: {
+    borderRadius: BORDERBOX,
+  },
+  brCircle: {
+    borderRadius: BORDERCIRCLE,
   },
 });
 export default styles;

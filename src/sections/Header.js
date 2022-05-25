@@ -1,49 +1,25 @@
-import React, {Fragment, useContext, useEffect, useState} from 'react';
-import {ImageBackground, Text, TouchableOpacity, View} from 'react-native';
+import React, {Fragment, useContext} from 'react';
+import {
+  Animated,
+  ImageBackground,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {LanguageContext} from '../context/LanguageContext';
 import {DataContext} from '../context/DataContext';
 import styles from '../utils/styles';
 import content from '../utils/content';
-import TemperatureIco from '../icons/TemperatureIco';
-import Loading from './Loading';
-import PHIco from '../icons/PHIco';
-import GestureRecognizer from 'react-native-swipe-gestures';
-import AmmoniumIco from '../icons/AmmoniumIco';
-import SalinityIco from '../icons/SalinityIco';
-import NitrateIco from '../icons/NitrateIco';
-import ChlorideIco from '../icons/ChlorideIco';
 
 const Header = () => {
-  // CONSTANTS AND HOOKS
-  const {language, setLanguagePreference} = useContext(LanguageContext);
-  const {data, currentParameter, setCurrentParameter, changeCurrentParameter} =
+  const {language, toggleLanguagePreference} = useContext(LanguageContext);
+  const {data, currentParameter, changeCurrentParameter} =
     useContext(DataContext);
   const parameter = data[currentParameter];
   const coverSource = require('../assets/tadlac_lake.jpg');
 
-  const onSwipeLeft = () => {
-    if (currentParameter < data.length - 1)
-      setCurrentParameter(prev => prev + 1);
-    else setCurrentParameter(0);
-  };
-
-  const onSwipeRight = () => {
-    if (currentParameter > 0) setCurrentParameter(prev => prev - 1);
-    else setCurrentParameter(data.length - 1);
-  };
-
-  const config = {
-    velocityThreshold: 0.3,
-    directionalOffsetThreshold: 80,
-  };
-
-  if (!parameter) return <Loading />;
   return (
-    <GestureRecognizer
-      onSwipeLeft={onSwipeLeft}
-      onSwipeRight={onSwipeRight}
-      config={config}
-      style={[styles.headerContainer, styles.viewCenter]}>
+    <View style={[styles.headerContainer, styles.viewCenter]}>
       <ImageBackground
         source={coverSource}
         style={styles.coverImage}
@@ -52,30 +28,30 @@ const Header = () => {
       <HeaderNav
         content={content}
         language={language}
-        setLanguagePreference={setLanguagePreference}
+        toggleLanguagePreference={toggleLanguagePreference}
       />
       <Jumbotron parameter={parameter} language={language} />
       <JumbotronNav
         currentParameter={currentParameter}
         changeCurrentParameter={changeCurrentParameter}
       />
-    </GestureRecognizer>
+    </View>
   );
 };
 
 const HeaderNav = props => {
   const content = props.content;
   const language = props.language;
-  const setLanguagePreference = props.setLanguagePreference;
+  const toggleLanguagePreference = props.toggleLanguagePreference;
   return (
     <View style={[styles.flexRow, styles.spaceBetween, styles.w100]}>
       <Text style={[styles.h2, styles.pv6, styles.ph6]}>
-        {content[`${language}`].headerTitle}
+        {content[language].HEADERTITLE}
       </Text>
       <TouchableOpacity
         style={[styles.pv6, styles.ph6]}
-        onPress={setLanguagePreference}>
-        <Text style={styles.h2}>{content[`${language}`].flag}</Text>
+        onPress={toggleLanguagePreference}>
+        <Text style={styles.h2}>{content[language].FLAG}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -84,10 +60,22 @@ const HeaderNav = props => {
 const Jumbotron = props => {
   const parameter = props.parameter;
   const language = props.language;
+
+  const prop = {
+    paramName: parameter.name,
+    level: parameter.getLevel(),
+    animate: !false,
+  };
   return (
-    <View style={[styles.glass, styles.viewCenter, styles.spaceBetween]}>
+    <View
+      style={[
+        styles.glass,
+        styles.viewCenter,
+        styles.spaceBetween,
+        {height: 150},
+      ]}>
       <View style={[styles.flexRow, styles.mv6]}>
-        <HeaderIco paramName={parameter.name} level={parameter.getLevel()} />
+        {parameter.getIcon(prop)}
         <Text
           style={styles.h1}>{`${parameter.average} ${parameter.unit}`}</Text>
       </View>
@@ -171,25 +159,6 @@ const JumbotronNav = props => {
       </TouchableOpacity>
     </View>
   );
-};
-
-const HeaderIco = props => {
-  const paramName = props.paramName;
-  const level = props.level;
-  if (paramName === 'Temperature')
-    return <TemperatureIco height={'100%'} level={level} animate={true} />;
-  if (paramName === 'pH')
-    return <PHIco height={'100%'} level={level} animate={true} />;
-  if (paramName === 'Salinity')
-    return <SalinityIco height={'100%'} level={level} animate={true} />;
-  if (paramName === 'Ammonium')
-    return <AmmoniumIco height={'100%'} level={level} animate={true} />;
-  if (paramName === 'Nitrate')
-    return <NitrateIco height={'100%'} level={level} animate={true} />;
-  if (paramName === 'Chloride')
-    return <ChlorideIco height={'100%'} level={level} animate={true} />;
-
-  return <Fragment></Fragment>;
 };
 
 export default Header;

@@ -10,7 +10,7 @@ const TemperatureIco = props => {
 
   // CONSTANTS AND HOOKS
   const ADDER = 1;
-  const LOOPS = 5;
+  const LOOPS = 20;
   const loopCounterRef = useRef(0);
   const loopRef = useRef(false);
   const adderRef = useRef(ADDER);

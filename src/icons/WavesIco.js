@@ -8,16 +8,14 @@ const WavesIco = props => {
   const animate = props.animate ?? false;
   const loop = props.loop ?? true;
   const invert = props.invert ?? false;
-
   // CONSTANTS AND HOOKS
   const ADDER = 2;
   const loopRef = useRef(false);
   const adderRef = useRef(ADDER);
   const [count, setCount] = useState(0);
-  const ANIMATIONSPEED = 50;
+  const ANIMATIONSPEED = 100;
   const ANIMATIONLENGTH = 1500;
   const WINDOWWIDTH = Dimensions.get('window').width;
-
   useEffect(() => {
     if (!animate) return;
     const interval = setInterval(() => {
@@ -25,7 +23,6 @@ const WavesIco = props => {
       if (loopRef.current) clearInterval(interval);
     }, ANIMATIONSPEED);
   }, []);
-
   if (count < 0) adderRef.current = ADDER;
   if (count > ANIMATIONLENGTH) adderRef.current = -ADDER;
   if (count >= ANIMATIONLENGTH && !loop) loopRef.current = true;

@@ -10,7 +10,7 @@ const SalinityIco = props => {
 
   // CONSTANTS AND HOOKS
   const ADDER = 0.5;
-  const LOOPS = 5;
+  const LOOPS = 20;
   const loopCounterRef = useRef(0);
   const loopRef = useRef(false);
   const adderRef = useRef(ADDER);

@@ -9,17 +9,9 @@ const SHORTNAME = 'Cl-';
 
 class ChlorideObj extends ParameterObj {
   constructor(area1, area2, area3, timeGathered = new Date()) {
-    super(area1, area2, area3, timeGathered, LOWVALUE, HIGHVALUE);
+    super(area1, area2, area3, timeGathered, LOWVALUE, HIGHVALUE, SHORTNAME);
     this.name = NAME;
-    this.shortname = SHORTNAME;
     this.unit = UNIT;
-  }
-
-  getDescription(language) {
-    const level = this.getLevel();
-    if (level === 1) return content[`${language}`].chlLvl1;
-    if (level === 2) return content[`${language}`].chlLvl2;
-    if (level === 3) return content[`${language}`].chlLvl3;
   }
 }
 

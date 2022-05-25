@@ -1,17 +1,14 @@
 import React, {Fragment, useState} from 'react';
 import LanguageContextProvider from './src/context/LanguageContext';
 import DataContextProvider from './src/context/DataContext';
-import Header from './src/sections/Header';
-import WavesIco from './src/icons/WavesIco';
+import Main from './src/sections/Main';
 
 const App = () => {
-  console.log('Rerendering App.js');
   return (
     <Fragment>
       <LanguageContextProvider>
         <DataContextProvider>
-          <Header />
-          <WavesIco width={'200%'} animate={true} />
+          <Main />
         </DataContextProvider>
       </LanguageContextProvider>
     </Fragment>
