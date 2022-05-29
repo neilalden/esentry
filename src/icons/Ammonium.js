@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {SvgXml} from 'react-native-svg';
-const AmmoniumIco = props => {
+const Ammonium = props => {
   // PROPS
   const height = props.height ?? '15%';
   const width = props.width ?? 50;
@@ -62,4 +62,4 @@ const AmmoniumIco = props => {
   return <SvgXml xml={xml} width={width} height={height} />;
 };
 
-export default AmmoniumIco;
+export default React.memo(Ammonium);

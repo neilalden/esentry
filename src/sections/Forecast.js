@@ -21,18 +21,18 @@ const Forecast = () => {
         {height: 550},
       ]}>
       <Text style={[styles.h2, styles.light1, styles.mb6]}>
-        {content[language].FORECASTDAYTITLE}
+        {content[language].DAYFORECASTTITLE}
       </Text>
       <HourlyForecast hourly={hourly} language={language} />
       <Text style={[styles.h2, styles.light1, styles.mv6]}>
-        {content[language].FORECASTWEEKTITLE}
+        {content[language].WEEKFORECASTTITLE}
       </Text>
       <DailyForecast daily={daily} language={language} />
     </View>
   );
 };
 
-const HourlyForecast = props => {
+const HourlyForecast = React.memo(props => {
   const hourly = props.hourly;
   return (
     <View
@@ -43,39 +43,39 @@ const HourlyForecast = props => {
         {height: 120},
       ]}>
       {hourly &&
-        hourly.map((hour, index) => {
+        hourly.map((item, index) => {
           const props = {
-            paramName: hour.name,
-            level: hour.getLevel(),
+            paramName: item.name,
+            level: item.getLevel(),
             height: '45%',
             animate: false,
           };
           return (
             <View key={index} style={[styles.mh1, styles.viewCenter]}>
               <Text style={[styles.p2, styles.pb6, styles.light1]}>
-                {hour.getTime()}
+                {item.getTime()}
               </Text>
-              {hour.getIcon(props)}
+              {item.getIcon(props)}
               <Text style={[styles.p3, styles.pt6, styles.light1]}>
-                {`${hour.average}${hour.unit}`}
+                {`${item.average}${item.unit}`}
               </Text>
             </View>
           );
         })}
     </View>
   );
-};
+});
 
-const DailyForecast = props => {
+const DailyForecast = React.memo(props => {
   const daily = props.daily;
   const language = props.language;
   return (
     <View style={[styles.glass, styles.spaceBetween, {height: 280}]}>
       {daily &&
-        daily.map((day, index) => {
+        daily.map((item, index) => {
           const props = {
-            paramName: day.name,
-            level: day.getLevel(),
+            paramName: item.name,
+            level: item.getLevel(),
             height: '75%',
             animate: false,
           };
@@ -90,10 +90,10 @@ const DailyForecast = props => {
                 {height: 50},
               ]}>
               <Text style={[styles.p1, styles.mh3, styles.light1]}>
-                {day.getDay(language)}
+                {item.getDay(language)}
               </Text>
               <Text style={[styles.p1, styles.mh3, styles.light1]}>
-                {day.getDayOfWeek(language)}
+                {item.getDayOfWeek(language)}
               </Text>
               <View
                 style={[
@@ -101,9 +101,9 @@ const DailyForecast = props => {
                   styles.viewCenter,
                   {height: 50, width: 120},
                 ]}>
-                {day.getIcon(props)}
+                {item.getIcon(props)}
                 <Text style={[styles.p2, styles.light1]}>
-                  {`${day.average}${day.unit}`}
+                  {`${item.average}${item.unit}`}
                 </Text>
               </View>
             </View>
@@ -111,6 +111,6 @@ const DailyForecast = props => {
         })}
     </View>
   );
-};
+});
 
-export default Forecast;
+export default React.memo(Forecast);

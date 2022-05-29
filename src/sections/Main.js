@@ -1,17 +1,22 @@
 import React, {useContext} from 'react';
 import Header from './Header';
 import Loading from './Loading';
-import WavesIco from '../icons/WavesIco';
+import Waves from '../icons/Waves';
 import {DataContext} from '../context/DataContext';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import {ScrollView} from 'react-native';
 import Forecast from './Forecast';
 import Details from './Details';
+import Overview from './Overview';
 
 const Main = () => {
-  console.log('Rerendering Main.js');
-  const {data, currentParameter, changeCurrentParameter} =
-    useContext(DataContext);
+  const {
+    data,
+    currentParameter,
+    changeCurrentParameter,
+    hourlyForecastData,
+    dailyForecastData,
+  } = useContext(DataContext);
   const parameter = data[currentParameter];
 
   const onSwipeLeft = () => {
@@ -30,7 +35,12 @@ const Main = () => {
     directionalOffsetThreshold: 80,
   };
 
-  if (!parameter) return <Loading />;
+  if (
+    data.length === 0 ||
+    hourlyForecastData.length === 0 ||
+    dailyForecastData.length === 0
+  )
+    return <Loading />;
   return (
     <ScrollView>
       <GestureRecognizer
@@ -39,12 +49,13 @@ const Main = () => {
         config={config}>
         <Header />
       </GestureRecognizer>
-      <WavesIco width={'200%'} animate={true} loop={!false} />
+      <Waves width={'200%'} animate={true} loop={!false} />
       <Forecast />
-      <WavesIco width={'200%'} animate={true} loop={!false} invert={true} />
+      <Waves width={'200%'} animate={true} loop={!false} inverted={true} />
       <Details />
+      <Overview />
     </ScrollView>
   );
 };
 
-export default Main;
+export default React.memo(Main);

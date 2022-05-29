@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {SvgXml} from 'react-native-svg';
-const SalinityIco = props => {
+const Salinity = props => {
   // PROPS
   const height = props.height ?? '15%';
   const width = props.width ?? 50;
@@ -52,7 +52,7 @@ const SalinityIco = props => {
   if (count > ANIMATIONLENGTH) adderRef.current = -ADDER;
   if (loopCounterRef.current == LOOPS && !loop) loopRef.current = true;
   const xml = `
-  <svg width="75" height="91" viewBox="-1 -1 75 93">
+  <svg width="75" height="91" viewBox="0 -1 75 93">
   <mask fill="white">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M63.9076 26.625C63.9439 26.5889 63.9803 26.5528 64.0165 26.5165L37.5 0L10.9835 26.5165C11.0197 26.5528 11.0561 26.5889 11.0924 26.625C4.24228 33.4196 0 42.8394 0 53.25C0 73.9607 16.7893 90.75 37.5 90.75C58.2107 90.75 75 73.9607 75 53.25C75 42.8394 70.7577 33.4196 63.9076 26.625Z"/>
   </mask>
@@ -76,4 +76,4 @@ const SalinityIco = props => {
   return <SvgXml xml={xml} width={width} height={height} />;
 };
 
-export default SalinityIco;
+export default React.memo(Salinity);

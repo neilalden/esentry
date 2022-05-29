@@ -1,18 +1,20 @@
 import content from '../utils/content';
-import ParameterObj from './ParameterObj';
+import Parameter from './Parameter';
 
-const LOWVALUE = 40;
-const HIGHVALUE = 80;
+const LOWVALUE = 0;
+const HIGHVALUE = 2;
+const SCALEINTERVAL = 0.2;
 const UNIT = 'mg/l';
-const NAME = 'Nitrate';
-const SHORTNAME = 'NO3-';
+const NAME = 'Chloride';
+const SHORTNAME = 'Cl-';
 
-class NitrateObj extends ParameterObj {
+class Chloride extends Parameter {
   constructor(area1, area2, area3, timeGathered = new Date()) {
     super(area1, area2, area3, timeGathered, LOWVALUE, HIGHVALUE, SHORTNAME);
+    this.scaleInterval = SCALEINTERVAL;
     this.name = NAME;
     this.unit = UNIT;
   }
 }
 
-export default NitrateObj;
+export default Chloride;

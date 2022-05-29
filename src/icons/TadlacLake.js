@@ -1,23 +1,19 @@
 import React from 'react';
-import {Dimensions, ImageBackground, View} from 'react-native';
+import {ImageBackground, View} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 import content from '../utils/content';
 import styles, {WINDOWWIDTH} from '../utils/styles';
 
-const TadlacLakeIco = props => {
+const TadlacLake = props => {
   // PROPS
-  const level = props.level ?? 1;
-  const animate = props.animate ?? false;
-  const loop = props.loop ?? true;
   const language = props.language ?? 'ENGLISH';
-  const coverSource = require('../assets/lake_bg.png');
-  const area1Color0 = props.area1Color0 ?? '#9cc0fa';
-  const area1Color10 = props.area1Color10 ?? '#9cc0fa';
-  const area2Color0 = props.area2Color0 ?? '#9cc0fa';
-  const area2Color10 = props.area2Color10 ?? '#9cc0fa';
-  const area3Color0 = props.area3Color0 ?? '#9cc0fa';
-  const area3Color10 = props.area3Color10 ?? '#9cc0fa';
-
+  const coverSource = require('../assets/bg.jpg');
+  const area1Color0 = props.areaColor?.area1Color0 ?? '#9cc0fa';
+  const area1Color10 = props.areaColor?.area1Color10 ?? '#9cc0fa';
+  const area2Color0 = props.areaColor?.area2Color0 ?? '#9cc0fa';
+  const area2Color10 = props.areaColor?.area2Color10 ?? '#9cc0fa';
+  const area3Color0 = props.areaColor?.area3Color0 ?? '#9cc0fa';
+  const area3Color10 = props.areaColor?.area3Color10 ?? '#9cc0fa';
   const xml = `
 <svg width="800" height="828" viewBox="0 0 800 828">
 <g>
@@ -55,10 +51,10 @@ const TadlacLakeIco = props => {
     <stop offset="100%" style="stop-color: #0099cc; stop-opacity: 1" />
     </linearGradient>
 </defs>
-<text x="380" y="480"  style="fill: #fff; font-size: 48px;fontFamily: 'Nunito-Bold';">${content[language].HEADERTITLE}</text>
-<text x="50" y="430" class="area-text" style="fill: #fff; font-size: 36px;fontFamily: 'Nunito-Bold';">${content[language].AREA} 1</text>
-<text x="500" y="80" class="area-text" style="fill: #fff; font-size: 36px;fontFamily: 'Nunito-Bold';">${content[language].AREA} 2</text>
-<text x="500" y="700" class="area-text" style="fill: #fff; font-size: 36px;fontFamily: 'Nunito-Bold';">${content[language].AREA} 3</text>
+<text x="380" y="410"  style="fill: #000; font-size: 48px;fontFamily: 'Nunito-Bold';">${content[language].HEADERTITLE}</text>
+<text x="50" y="430" class="area-text" style="fill: #000; font-size: 36px;fontFamily: 'Nunito-Bold';">${content[language].AREA} 1</text>
+<text x="500" y="80" class="area-text" style="fill: #000; font-size: 36px;fontFamily: 'Nunito-Bold';">${content[language].AREA} 2</text>
+<text x="500" y="700" class="area-text" style="fill: #000; font-size: 36px;fontFamily: 'Nunito-Bold';">${content[language].AREA} 3</text>
 </svg>
 `;
   return (
@@ -73,4 +69,4 @@ const TadlacLakeIco = props => {
   );
 };
 
-export default TadlacLakeIco;
+export default React.memo(TadlacLake);

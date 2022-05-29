@@ -20,7 +20,7 @@ const DataContextProvider = props => {
         });
       });
     };
-    setTimeout(() => handleFetch(), 1000);
+    handleFetch();
   }, []);
 
   const changeCurrentParameter = index => {

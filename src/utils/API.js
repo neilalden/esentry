@@ -1,119 +1,151 @@
 import firestore from '@react-native-firebase/firestore';
-import TemperatureObj from '../objects/TemperatureObj';
-import PHObj from '../objects/PHObj';
-import SalinityObj from '../objects/SalinityObj';
-import AmmoniumObj from '../objects/AmmoniumObj';
-import NitrateObj from '../objects/NitrateObj';
-import ChlorideObj from '../objects/ChlorideObj';
+import Temperature from '../objects/Temperature';
+import PH from '../objects/PH';
+import Salinity from '../objects/Salinity';
+import Ammonium from '../objects/Ammonium';
+import Nitrate from '../objects/Nitrate';
+import Chloride from '../objects/Chloride';
 
 const fetchData = async () => {
-  const dataArr = [];
-  dataArr.push(new TemperatureObj(24.96, 24.6, 24.81));
-  dataArr.push(new PHObj(9.44, 9.43, 9.44));
-  dataArr.push(new SalinityObj(-0.02, -0.02, -0.02));
-  dataArr.push(new AmmoniumObj(45.98, 45.9, 45.97));
-  dataArr.push(new NitrateObj(44.98, 44.93, 44.92));
-  dataArr.push(new ChlorideObj(0, 0, 0));
-
-  // firestore()
-  //   .collection('records')
-  //   .get()
-  //   .then(querySnapshot => {
-  //     querySnapshot.forEach(doc => {
-  //       console.log(doc.data());
-  //     });
-  //   })
-  //   .catch(e => console.log(e));
-  return dataArr;
+  try {
+    let temp, ph, sal, amm, nit, chl;
+    const querySnapshot = await firestore().collection('records').get();
+    querySnapshot.forEach(doc => {
+      const data = doc.data();
+      if (data.parameter === 'Temperature') {
+        temp = new Temperature(
+          data.area1,
+          data.area2,
+          data.area3,
+          data.timeGathered.toDate(),
+        );
+      }
+      if (data.parameter === 'pH') {
+        ph = new PH(
+          data.area1,
+          data.area2,
+          data.area3,
+          data.timeGathered.toDate(),
+        );
+      }
+      if (data.parameter === 'Salinity') {
+        sal = new Salinity(
+          data.area1,
+          data.area2,
+          data.area3,
+          data.timeGathered.toDate(),
+        );
+      }
+      if (data.parameter === 'Ammonium') {
+        amm = new Ammonium(
+          data.area1,
+          data.area2,
+          data.area3,
+          data.timeGathered.toDate(),
+        );
+      }
+      if (data.parameter === 'Nitrate') {
+        nit = new Nitrate(
+          data.area1,
+          data.area2,
+          data.area3,
+          data.timeGathered.toDate(),
+        );
+      }
+      if (data.parameter === 'Chloride') {
+        chl = new Chloride(
+          data.area1,
+          data.area2,
+          data.area3,
+          data.timeGathered.toDate(),
+        );
+      }
+    });
+    return [temp, ph, sal, amm, nit, chl];
+  } catch (e) {
+    console.log('fetchData', e);
+  }
 };
 const fetchForecastData = async type => {
-  const currentDate = new Date();
-  const res = [];
-  let arr = [];
-  for (let i = 1; i <= 5; i++) {
-    const d =
-      type === 'HOURS'
-        ? new Date().setHours(currentDate.getHours() + i)
-        : new Date().setDate(currentDate.getDate() + i);
-    const highValue = new TemperatureObj().highValue;
-    const area1 = randomInt(highValue);
-    const area2 = randomInt(highValue);
-    const area3 = randomInt(highValue);
-    arr.push(new TemperatureObj(area1, area2, area3, d));
+  const temp = [],
+    ph = [],
+    sal = [],
+    amm = [],
+    nit = [],
+    chl = [];
+  const ref = type === 'HOURS' ? 'hourly_predictions' : 'daily_predictions';
+  try {
+    const querySnapshot = await firestore()
+      .collection(ref)
+      .orderBy('timeGathered')
+      .get();
+    querySnapshot.forEach(doc => {
+      const data = doc.data();
+      if (data.parameter === 'Temperature') {
+        temp.push(
+          new Temperature(
+            data.area1,
+            data.area2,
+            data.area3,
+            data.timeGathered.toDate(),
+          ),
+        );
+      }
+      if (data.parameter === 'pH') {
+        ph.push(
+          new PH(
+            data.area1,
+            data.area2,
+            data.area3,
+            data.timeGathered.toDate(),
+          ),
+        );
+      }
+      if (data.parameter === 'Salinity') {
+        sal.push(
+          new Salinity(
+            data.area1,
+            data.area2,
+            data.area3,
+            data.timeGathered.toDate(),
+          ),
+        );
+      }
+      if (data.parameter === 'Ammonium') {
+        amm.push(
+          new Ammonium(
+            data.area1,
+            data.area2,
+            data.area3,
+            data.timeGathered.toDate(),
+          ),
+        );
+      }
+      if (data.parameter === 'Nitrate') {
+        nit.push(
+          new Nitrate(
+            data.area1,
+            data.area2,
+            data.area3,
+            data.timeGathered.toDate(),
+          ),
+        );
+      }
+      if (data.parameter === 'Chloride') {
+        chl.push(
+          new Chloride(
+            data.area1,
+            data.area2,
+            data.area3,
+            data.timeGathered.toDate(),
+          ),
+        );
+      }
+    });
+    return [temp, ph, sal, amm, nit, chl];
+  } catch (e) {
+    console.log('fetchForecastData' + type, e);
   }
-  res.push(arr);
-  arr = [];
-  for (let i = 1; i <= 5; i++) {
-    const d =
-      type === 'HOURS'
-        ? new Date().setHours(currentDate.getHours() + i)
-        : new Date().setDate(currentDate.getDate() + i);
-    const highValue = new PHObj().highValue;
-    const area1 = randomInt(highValue);
-    const area2 = randomInt(highValue);
-    const area3 = randomInt(highValue);
-    arr.push(new PHObj(area1, area2, area3, d));
-  }
-  res.push(arr);
-  arr = [];
-  for (let i = 1; i <= 5; i++) {
-    const d =
-      type === 'HOURS'
-        ? new Date().setHours(currentDate.getHours() + i)
-        : new Date().setDate(currentDate.getDate() + i);
-    const highValue = new SalinityObj().highValue;
-    const area1 = randomInt(highValue);
-    const area2 = randomInt(highValue);
-    const area3 = randomInt(highValue);
-    arr.push(new SalinityObj(area1, area2, area3, d));
-  }
-  res.push(arr);
-  arr = [];
-  for (let i = 1; i <= 5; i++) {
-    const d =
-      type === 'HOURS'
-        ? new Date().setHours(currentDate.getHours() + i)
-        : new Date().setDate(currentDate.getDate() + i);
-    const highValue = new AmmoniumObj().highValue;
-    const area1 = randomInt(highValue);
-    const area2 = randomInt(highValue);
-    const area3 = randomInt(highValue);
-    arr.push(new AmmoniumObj(area1, area2, area3, d));
-  }
-  res.push(arr);
-  arr = [];
-  for (let i = 1; i <= 5; i++) {
-    const d =
-      type === 'HOURS'
-        ? new Date().setHours(currentDate.getHours() + i)
-        : new Date().setDate(currentDate.getDate() + i);
-    const highValue = new NitrateObj().highValue;
-    const area1 = randomInt(highValue);
-    const area2 = randomInt(highValue);
-    const area3 = randomInt(highValue);
-    arr.push(new NitrateObj(area1, area2, area3, d));
-  }
-  res.push(arr);
-  arr = [];
-  for (let i = 1; i <= 5; i++) {
-    const d =
-      type === 'HOURS'
-        ? new Date().setHours(currentDate.getHours() + i)
-        : new Date().setDate(currentDate.getDate() + i);
-    const highValue = new ChlorideObj().highValue;
-    const area1 = randomInt(highValue);
-    const area2 = randomInt(highValue);
-    const area3 = randomInt(highValue);
-    arr.push(new ChlorideObj(area1, area2, area3, d));
-  }
-  res.push(arr);
-  console.log('fetchForecastData', type);
-
-  return res;
-};
-
-const randomInt = max => {
-  return Math.floor(Math.random() * (max + max - 0 + 1) + 0);
 };
 
 export {fetchData, fetchForecastData};

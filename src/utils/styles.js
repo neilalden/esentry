@@ -5,12 +5,40 @@ export const LIGHT1 = '#FFF';
 export const DARK1 = '#000';
 export const DARK2 = '#313235';
 export const BORDERBOX = 15;
-export const BORDERCIRCLE = 50;
+export const BORDERCIRCLE = 500;
 export const PRIMARY1 = '#0099FF';
 export const PRIMARY2 = '#6DC3FD';
 export const PRIMARY3 = '#9CD7FE';
+export const SUCCESS = 'lightgreen';
+export const WARNING = 'gold';
+export const DANGER = 'red';
 export const WINDOWWIDTH =
   Dimensions.get('window').width < 450 ? Dimensions.get('window').width : 450;
+
+export const COLOR0 = [
+  '#007399',
+  '#248f8f',
+  '#00b36b',
+  '#33cc00',
+  '#99cc00',
+  '#b3b300',
+  '#b39800',
+  '#b37400',
+  '#b33000',
+  '#800000',
+];
+export const COLOR10 = [
+  '#0099cc',
+  '#33cccc',
+  '#00ff99',
+  '#66ff33',
+  '#ccff33',
+  'yellow',
+  'gold',
+  'orange',
+  '#ff4500',
+  'red',
+];
 const styles = StyleSheet.create({
   headerContainer: {
     height: 250,
@@ -59,6 +87,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
   },
+  flexEnd: {
+    alignItems: 'flex-end',
+  },
   flexWrap: {
     flexWrap: 'wrap',
   },
@@ -96,6 +127,15 @@ const styles = StyleSheet.create({
   backgroundColorPrimary3: {
     backgroundColor: PRIMARY3,
   },
+  backgroundColorSuccess: {
+    backgroundColor: SUCCESS,
+  },
+  backgroundColorDanger: {
+    backgroundColor: DANGER,
+  },
+  backgroundColorWarning: {
+    backgroundColor: WARNING,
+  },
   pt1: {
     paddingTop: 2,
   },
@@ -131,6 +171,45 @@ const styles = StyleSheet.create({
   },
   pb6: {
     paddingBottom: 12,
+  },
+  pr1: {
+    paddingRight: 2,
+  },
+  pr2: {
+    paddingRight: 4,
+  },
+  pr3: {
+    paddingRight: 6,
+  },
+  pr4: {
+    paddingRight: 8,
+  },
+  pr5: {
+    paddingRight: 10,
+  },
+  pr6: {
+    paddingRight: 12,
+  },
+  pl6: {
+    paddingLeft: 12,
+  },
+  pl1: {
+    paddingLeft: 2,
+  },
+  pl2: {
+    paddingLeft: 4,
+  },
+  pl3: {
+    paddingLeft: 6,
+  },
+  pl4: {
+    paddingLeft: 8,
+  },
+  pl5: {
+    paddingLeft: 10,
+  },
+  pl6: {
+    paddingLeft: 12,
   },
   pv1: {
     paddingVertical: 2,
@@ -203,6 +282,42 @@ const styles = StyleSheet.create({
   },
   mb6: {
     marginBottom: 12,
+  },
+  mr1: {
+    marginRight: 2,
+  },
+  mr2: {
+    marginRight: 4,
+  },
+  mr3: {
+    marginRight: 6,
+  },
+  mr4: {
+    marginRight: 8,
+  },
+  mr5: {
+    marginRight: 10,
+  },
+  mr6: {
+    marginRight: 12,
+  },
+  ml1: {
+    marginLeft: 2,
+  },
+  ml2: {
+    marginLeft: 4,
+  },
+  ml3: {
+    marginLeft: 6,
+  },
+  ml4: {
+    marginLeft: 8,
+  },
+  ml5: {
+    marginLeft: 10,
+  },
+  ml6: {
+    marginLeft: 12,
   },
   mv1: {
     marginVertical: 2,

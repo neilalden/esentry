@@ -39,7 +39,7 @@ const Header = () => {
   );
 };
 
-const HeaderNav = props => {
+const HeaderNav = React.memo(props => {
   const content = props.content;
   const language = props.language;
   const toggleLanguagePreference = props.toggleLanguagePreference;
@@ -55,16 +55,16 @@ const HeaderNav = props => {
       </TouchableOpacity>
     </View>
   );
-};
+});
 
-const Jumbotron = props => {
+const Jumbotron = React.memo(props => {
   const parameter = props.parameter;
   const language = props.language;
 
   const prop = {
     paramName: parameter.name,
     level: parameter.getLevel(),
-    animate: !false,
+    animate: false,
   };
   return (
     <View
@@ -84,9 +84,9 @@ const Jumbotron = props => {
       </Text>
     </View>
   );
-};
+});
 
-const JumbotronNav = props => {
+const JumbotronNav = React.memo(props => {
   const currentParameter = props.currentParameter;
   const changeCurrentParameter = props.changeCurrentParameter;
   return (
@@ -159,6 +159,6 @@ const JumbotronNav = props => {
       </TouchableOpacity>
     </View>
   );
-};
+});
 
-export default Header;
+export default React.memo(Header);

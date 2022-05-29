@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {SvgXml} from 'react-native-svg';
-const PHIco = props => {
+const PH = props => {
   // PROPS
   const height = props.height ?? '15%';
   const width = props.width ?? 50;
@@ -54,4 +54,4 @@ const PHIco = props => {
   return <SvgXml xml={xml} width={width} height={height} />;
 };
 
-export default PHIco;
+export default React.memo(PH);
