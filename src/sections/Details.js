@@ -1,5 +1,6 @@
 import React, {Fragment, useContext, useState} from 'react';
 import {Switch, Text, TouchableOpacity, View} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import {LanguageContext} from '../context/LanguageContext';
 import TadlacLake from '../icons/TadlacLake';
 import content from '../utils/content';
@@ -11,10 +12,9 @@ import styles, {
   WINDOWWIDTH,
   COLOR0,
   COLOR10,
-  SUCCESS,
-  WARNING,
   DANGER,
   NUNITOBOLD,
+  LIGHT1,
 } from '../utils/styles';
 import {DataContext} from '../context/DataContext';
 import {
@@ -40,7 +40,18 @@ const Details = () => {
   };
   if (!hourlyData || !dailyData) return <Fragment></Fragment>;
   return (
-    <View style={[{height: 670}]}>
+    <LinearGradient
+      style={[styles.pt6, {height: 700}]}
+      colors={[
+        PRIMARY1,
+        PRIMARY1,
+        LIGHT1,
+        LIGHT1,
+        LIGHT1,
+        LIGHT1,
+        LIGHT1,
+        PRIMARY1,
+      ]}>
       <DetailsNav
         language={language}
         isDaily={isDaily}
@@ -48,7 +59,9 @@ const Details = () => {
       />
       <TadlacLake language={language} areaColor={areaColor} />
       <ChartHeader language={language} />
+
       <ChartComponent
+        language={language}
         chartCurr={chartCurr}
         setChartCurr={setChartCurr}
         currentData={currentData}
@@ -59,7 +72,7 @@ const Details = () => {
         COLOR0={COLOR0}
         COLOR10={COLOR10}
       />
-    </View>
+    </LinearGradient>
   );
 };
 
@@ -70,7 +83,13 @@ const DetailsNav = React.memo(props => {
   return (
     <View style={[styles.flexRow, styles.spaceBetween]}>
       <Text
-        style={[styles.h2, styles.pb6, styles.pl6, {width: WINDOWWIDTH - 50}]}>
+        style={[
+          styles.h2,
+          styles.light1,
+          styles.pb6,
+          styles.pl6,
+          {width: WINDOWWIDTH - 50},
+        ]}>
         {
           content[language][
             `${isDaily ? 'DAILYDETAILSTITLE' : 'WEEKLYDETAILSTITLE'}`
@@ -138,6 +157,7 @@ const ChartHeader = React.memo(props => {
 });
 
 const ChartComponent = React.memo(props => {
+  const language = props.language;
   const isDaily = props.isDaily;
   const currentData = props.currentData;
   const hourlyData = [...props.hourlyData];
@@ -291,14 +311,14 @@ const ChartComponent = React.memo(props => {
       <View style={[styles.flexRow, styles.jCenter]}>
         <View style={styles.mh6}>
           <Text style={styles.p1}>
-            Area 1:{' '}
+            {`${content[language].AREA} 1: `}
             <Text style={{fontFamily: NUNITOBOLD}}>
               {current.area1}
               {current.unit}
             </Text>
           </Text>
           <Text style={[styles.p1, styles.mt3]}>
-            Area 3:{' '}
+            {`${content[language].AREA} 2: `}
             <Text style={{fontFamily: NUNITOBOLD}}>
               {current.area3}
               {current.unit}
@@ -307,14 +327,14 @@ const ChartComponent = React.memo(props => {
         </View>
         <View style={styles.mh6}>
           <Text style={styles.p1}>
-            Area 2:{' '}
+            {`${content[language].AREA} 3: `}
             <Text style={{fontFamily: NUNITOBOLD}}>
               {current.area2}
               {current.unit}
             </Text>
           </Text>
           <Text style={[styles.p1, styles.mt3]}>
-            Average:{' '}
+            {`${content[language].AVERAGE}: `}
             <Text style={{fontFamily: NUNITOBOLD}}>
               {current.average}
               {current.unit}
@@ -345,12 +365,13 @@ const findAreaColor = (
   };
   const current = isDaily ? hourlyData[x] : dailyData[x];
   for (
-    let i = current.lowValue, j = 0;
+    let i = 0, j = 0;
     i <= current.highValue;
     i = parseFloat((i + current.scaleInterval).toFixed(3)), j += 1
   ) {
     // this logic is up for debate, i may be confused
     if (i >= current.highValue) j -= 1;
+    // if (i <= current.lowValue) j = 0;
     if (i <= current.area1) {
       areaColor.area1Color0 = COLOR0[j];
       areaColor.area1Color10 = COLOR10[j];

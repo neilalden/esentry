@@ -60,7 +60,7 @@ class Parameter {
     const animate = props.animate ?? true;
     const loop = props.loop ?? false;
 
-    if (!true) {
+    if (!animate) {
       if (paramName === 'Temperature') {
         if (level === 1) {
           const urlString = '../assets/icons/Temperature1.png';

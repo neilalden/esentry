@@ -12,7 +12,7 @@ const Loading = () => {
       <View style={styles.loadingContainer}>
         <Text style={styles.h1}>{content[language].LOADING}</Text>
       </View>
-      <Waves width={'200%'} animate={true} loop={true} />
+      {/* <Waves width={'200%'} animate={true} loop={true} /> */}
     </Fragment>
   );
 };

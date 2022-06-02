@@ -33,6 +33,7 @@ const content = {
     'Cl-LVL2': 'The water contains acceptable levels of chloride',
     'Cl-LVL3': 'The water contains elevated levels of chloride',
     AREA: 'Area',
+    AVERAGE: 'Average',
     MONTHS: [
       'Jan',
       'Feb',
@@ -86,6 +87,7 @@ const content = {
       'Ang tubig ay naglalaman ng katanggap-tanggap na antas ng klorido',
     'Cl-LVL3': 'Ang tubig ay naglalaman ng mataas na antas ng klorido',
     AREA: 'Pook',
+    AVERAGE: 'Average',
     MONTHS: [
       'Ene',
       'Peb',

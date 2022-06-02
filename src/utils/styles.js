@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     height: 15,
     width: 15,
     borderRadius: BORDERCIRCLE,
-    backgroundColor: PRIMARY3,
+    backgroundColor: PRIMARY2,
   },
   jumbotronNavButtonActive: {
     height: 15,
@@ -135,6 +135,9 @@ const styles = StyleSheet.create({
   },
   backgroundColorWarning: {
     backgroundColor: WARNING,
+  },
+  backgroundColorLight: {
+    backgroundColor: LIGHT1,
   },
   pt1: {
     paddingTop: 2,
@@ -368,6 +371,21 @@ const styles = StyleSheet.create({
   h3: {
     color: DARK1,
     fontSize: 24,
+    fontFamily: NUNITOBOLD,
+  },
+  h4: {
+    color: DARK1,
+    fontSize: 20,
+    fontFamily: NUNITOBOLD,
+  },
+  h5: {
+    color: DARK1,
+    fontSize: 18,
+    fontFamily: NUNITOBOLD,
+  },
+  h6: {
+    color: DARK1,
+    fontSize: 16,
     fontFamily: NUNITOBOLD,
   },
   p1: {

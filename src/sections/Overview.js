@@ -1,17 +1,20 @@
 import React, {Fragment, useContext} from 'react';
 import {Text, View} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import {DataContext} from '../context/DataContext';
 import {LanguageContext} from '../context/LanguageContext';
 import content from '../utils/content';
-import styles from '../utils/styles';
+import styles, {LIGHT1, PRIMARY1, PRIMARY2, PRIMARY3} from '../utils/styles';
 
 const Overview = () => {
   const {language} = useContext(LanguageContext);
   const {data} = useContext(DataContext);
 
   return (
-    <View>
-      <Text style={[styles.h2, styles.pb6, styles.ph6]}>
+    <LinearGradient
+      style={styles.pt6}
+      colors={[PRIMARY1, PRIMARY1, PRIMARY1, PRIMARY2, PRIMARY3]}>
+      <Text style={[styles.h2, styles.light1, styles.pb6, styles.ph6]}>
         {content[language].OVERVIEWTITLE}
       </Text>
       <View style={[styles.flexRow, styles.flexWrap, styles.jCenter]}>
@@ -144,7 +147,7 @@ const Overview = () => {
           </Text>
         </View>
       </View>
-    </View>
+    </LinearGradient>
   );
 };
 

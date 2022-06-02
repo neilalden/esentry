@@ -17,7 +17,6 @@ const Main = () => {
     hourlyForecastData,
     dailyForecastData,
   } = useContext(DataContext);
-  const parameter = data[currentParameter];
 
   const onSwipeLeft = () => {
     if (currentParameter < data.length - 1)
@@ -36,6 +35,9 @@ const Main = () => {
   };
 
   if (
+    !data ||
+    !hourlyForecastData ||
+    !dailyForecastData ||
     data.length === 0 ||
     hourlyForecastData.length === 0 ||
     dailyForecastData.length === 0
@@ -51,7 +53,6 @@ const Main = () => {
       </GestureRecognizer>
       <Waves width={'200%'} animate={true} loop={!false} />
       <Forecast />
-      <Waves width={'200%'} animate={true} loop={!false} inverted={true} />
       <Details />
       <Overview />
     </ScrollView>

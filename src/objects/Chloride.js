@@ -1,9 +1,9 @@
 import content from '../utils/content';
 import Parameter from './Parameter';
 
-const LOWVALUE = 0;
-const HIGHVALUE = 2;
-const SCALEINTERVAL = 0.2;
+const LOWVALUE = 23;
+const HIGHVALUE = 80;
+const SCALEINTERVAL = 8;
 const UNIT = 'mg/l';
 const NAME = 'Chloride';
 const SHORTNAME = 'Cl-';

@@ -17,7 +17,7 @@ const Header = () => {
     useContext(DataContext);
   const parameter = data[currentParameter];
   const coverSource = require('../assets/tadlac_lake.jpg');
-
+  if (!parameter) return <Fragment></Fragment>;
   return (
     <View style={[styles.headerContainer, styles.viewCenter]}>
       <ImageBackground
@@ -60,28 +60,21 @@ const HeaderNav = React.memo(props => {
 const Jumbotron = React.memo(props => {
   const parameter = props.parameter;
   const language = props.language;
-
-  const prop = {
-    paramName: parameter.name,
-    level: parameter.getLevel(),
-    animate: false,
-  };
+  const description = getString(parameter, language);
   return (
     <View
       style={[
         styles.glass,
         styles.viewCenter,
         styles.spaceBetween,
-        {height: 150},
+        {height: 150, minWidth: 250},
       ]}>
-      <View style={[styles.flexRow, styles.mv6]}>
-        {parameter.getIcon(prop)}
-        <Text
-          style={styles.h1}>{`${parameter.average} ${parameter.unit}`}</Text>
-      </View>
-      <Text style={[styles.p1, styles.textCenter]}>
-        {parameter.getDescription(language)}
-      </Text>
+      <Text
+        style={[
+          styles.h1,
+          styles.mt6,
+        ]}>{`${parameter.average} ${parameter.unit}`}</Text>
+      <Text style={[styles.h6, styles.textCenter]}>{description}</Text>
     </View>
   );
 });
@@ -160,5 +153,18 @@ const JumbotronNav = React.memo(props => {
     </View>
   );
 });
+
+const getString = (parameter, language) => {
+  const desc = parameter.getDescription(language).split(' ');
+  const splitterNum = 5;
+  let descString = '';
+  if (desc.length > splitterNum) {
+    desc.forEach((s, i) => {
+      if (i === splitterNum) descString += s + '\n';
+      else descString += s + ' ';
+    });
+  } else descString = parameter.getDescription(language);
+  return descString;
+};
 
 export default React.memo(Header);

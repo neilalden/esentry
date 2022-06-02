@@ -58,7 +58,7 @@ const TadlacLake = props => {
 </svg>
 `;
   return (
-    <View style={[styles.viewCenter, styles.pb6]}>
+    <View style={styles.viewCenter}>
       <ImageBackground
         resizeMode="cover"
         source={coverSource}
