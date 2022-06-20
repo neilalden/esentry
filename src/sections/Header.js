@@ -60,21 +60,28 @@ const HeaderNav = React.memo(props => {
 const Jumbotron = React.memo(props => {
   const parameter = props.parameter;
   const language = props.language;
-  const description = getString(parameter, language);
+  const description = getDescription(parameter, language);
+  const prop = {
+    paramName: parameter.name,
+    level: parameter.getLevel(),
+    animate: false,
+    height: 50,
+  };
+
   return (
     <View
       style={[
         styles.glass,
         styles.viewCenter,
         styles.spaceBetween,
-        {height: 150, minWidth: 250},
+        {height: 150},
       ]}>
-      <Text
-        style={[
-          styles.h1,
-          styles.mt6,
-        ]}>{`${parameter.average} ${parameter.unit}`}</Text>
-      <Text style={[styles.h6, styles.textCenter]}>{description}</Text>
+      <View style={[styles.flexRow, styles.mv6]}>
+        {parameter.getIcon(prop)}
+        <Text
+          style={styles.h1}>{`${parameter.average} ${parameter.unit}`}</Text>
+      </View>
+      <Text style={[styles.p1, styles.textCenter]}>{description}</Text>
     </View>
   );
 });
@@ -154,7 +161,7 @@ const JumbotronNav = React.memo(props => {
   );
 });
 
-const getString = (parameter, language) => {
+const getDescription = (parameter, language) => {
   const desc = parameter.getDescription(language).split(' ');
   const splitterNum = 5;
   let descString = '';

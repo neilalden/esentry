@@ -7,6 +7,7 @@ import styles from '../utils/styles';
 
 const Loading = () => {
   const {language} = useContext(LanguageContext);
+
   return (
     <Fragment>
       <View style={styles.loadingContainer}>
