@@ -2,7 +2,7 @@ import Link from "next/link";
 import TextInput from "../utils/text-input";
 const LoginForm = () => {
 	return (
-		<div className='w-fitcontent m-auto'>
+		<div className='w-fit-content m-auto'>
 			<h1 style={{ marginTop: 100 }}>Hello again!</h1>
 			<p style={{ marginBottom: 50 }}>
 				Are you new here?&nbsp;

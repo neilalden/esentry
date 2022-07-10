@@ -1,9 +1,11 @@
 const UploadIcon = (props) => {
 	const fill = props.fill ?? "#fff";
+	const height = props.height ?? "30";
+	const width = props.width ?? "34";
 	return (
 		<svg
-			width='34'
-			height='30'
+			height={height}
+			width={width}
 			viewBox='0 0 34 30'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'>

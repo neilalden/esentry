@@ -1,7 +1,6 @@
 ::-webkit-scrollbar {
 	width: 8px !important;
 	height: 8px;
-	cursor: grab;
 }
 ::-webkit-scrollbar-thumb {
 	background: #b1bfc9;
@@ -12,6 +11,7 @@
 }
 :root {
 	--border-radius: 15px;
+	--border-radius-circle: 50%;
 	--font: "Source Code Pro", monospace;
 	--white: #fff;
 	--black: #000;
@@ -97,6 +97,7 @@ tr {
 }
 tr:hover {
 	border-bottom: 1px solid #b1bfc9;
+	border-top: 1px solid #b1bfc9;
 }
 th {
 	pointer-events: none;
@@ -170,7 +171,7 @@ th {
 	position: fixed;
 }
 .cursor-pointer {
-	cursor: pointer;
+	cursor: pointer !important;
 }
 .icon {
 	height: 30px;
@@ -179,7 +180,7 @@ th {
 .button {
 	outline: none;
 	border: none;
-	cursor: pointer;
+	cursor: pointer !important;
 	color: inherit;
 	font-size: 16px;
 	border-radius: var(--border-radius);
@@ -221,9 +222,66 @@ th {
 #nav {
 	width: 375px !important;
 }
+#map-container {
+	background: url("lake_bg.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	height: 300px;
+	width: 400px;
+}
+#tadlac-lake {
+	height: 300px;
+	width: 300px;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+}
+#bar-scale {
+	fill: url(#linear-grad);
+	height: 300px !important;
+	width: 37px !important;
+	align-self: center;
+}
+.bar-text {
+	font-size: 8px;
+	stroke-width: 2px;
+}
+#area-1 {
+	fill: url(#grad1);
+}
+#area-2 {
+	fill: url(#grad2);
+}
 
+#area-3 {
+	fill: url(#grad3);
+}
+#map-container svg g path {
+	cursor: pointer;
+	transition: linear 0.4s !important;
+}
+#map-container svg g path:hover {
+	stroke: #000;
+	stroke-width: 6;
+	/* fill: #9cc0fa !important; */
+	/* fill: transparent !important; */
+}
+text {
+	fill: #fff;
+	font-size: 32px;
+	font-weight: bold !important;
+	stroke: #2a2a2a;
+	stroke-width: 5px;
+	paint-order: stroke;
+}
 .br {
 	border-radius: var(--border-radius);
+}
+.br-circle {
+	border-radius: var(--border-radius-circle);
 }
 .h-100 {
 	height: 100%;
@@ -241,7 +299,7 @@ th {
 	height: 40%;
 }
 .h-100vh {
-	height: 100vh;
+	height: 100vh !important;
 }
 .h-40vh {
 	height: 40vh;
@@ -328,7 +386,7 @@ th {
 .w-350px {
 	width: 350px;
 }
-.w-fitcontent {
+.w-fit-content {
 	width: fit-content !important;
 }
 .pv-0 {
@@ -361,6 +419,29 @@ th {
 .pv-5px {
 	padding-top: 5px;
 	padding-bottom: 5px;
+}
+.p-10px {
+	padding: 10px;
+}
+.pr-10px {
+	padding-right: 10px;
+}
+.pl-10px {
+	padding-left: 10px;
+}
+.pt-10px {
+	padding-top: 10px;
+}
+.pb-10px {
+	padding-bottom: 10px;
+}
+.ph-10px {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.pv-10px {
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 .p-15px {
 	padding: 15px;

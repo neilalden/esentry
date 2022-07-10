@@ -7,13 +7,12 @@ const Notifications = () => {
 	const { darkMode } = useContext(ThemeContext);
 	const theme = darkMode ? "dark" : "light";
 	return (
-		<div
-			className={`d-flex flex-row ${
-				darkMode ? "bg-gradient-dark" : "bg-gradient-light"
-			}`}>
-			<Nav />
-			<div style={{ height: "100%", width: "100%" }} className='mh-20px'>
-				<NotificationsTable theme={theme} />
+		<div className={`${darkMode ? "bg-gradient-dark" : "bg-gradient-light"}`}>
+			<div className='m-auto d-flex flex-row' style={{ maxWidth: "1200px" }}>
+				<Nav />
+				<div style={{ height: "100%", width: "100%" }} className='mh-20px'>
+					<NotificationsTable theme={theme} />
+				</div>
 			</div>
 		</div>
 	);

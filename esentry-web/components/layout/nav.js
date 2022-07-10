@@ -23,7 +23,7 @@ const Nav = () => {
 				<Header />
 				<Link href='/dashboard'>
 					<a
-						className={`button d-flex flex-row w-fitcontent ph-20px pv-15px ml-20px ${
+						className={`button cursor-pointer d-flex flex-row w-fit-content ph-20px pv-15px ml-20px ${
 							currPage === "dashboard" && `bg-primary-${theme}`
 						}`}>
 						<DashboardIcon fill={fill} />
@@ -32,7 +32,7 @@ const Nav = () => {
 				</Link>
 				<Link href='/reports'>
 					<a
-						className={`button d-flex flex-row w-fitcontent ph-20px pv-15px ml-20px ${
+						className={`button d-flex flex-row w-fit-content ph-20px pv-15px ml-20px ${
 							currPage === "reports" && `bg-primary-${theme}`
 						}`}>
 						<ReportsIcon fill={fill} />
@@ -41,7 +41,7 @@ const Nav = () => {
 				</Link>
 				<Link href='/notifications'>
 					<a
-						className={`button d-flex flex-row w-fitcontent ph-20px pv-15px ml-20px ${
+						className={`button d-flex flex-row w-fit-content ph-20px pv-15px ml-20px ${
 							currPage === "notifications" && `bg-primary-${theme}`
 						}`}>
 						<NotificationsIcon fill={fill} />
@@ -67,7 +67,7 @@ const ThemeButton = (props) => {
 	if (darkMode)
 		return (
 			<a
-				className='d-flex flex-row w-fitcontent ph-20px pv-15px ml-20px button'
+				className='d-flex flex-row w-fit-content ph-20px pv-15px ml-20px button'
 				onClick={toggleTheme}>
 				<DarkModeIcon fill={fill} />
 				<h4 className={`ml-20px ${textTheme}`}>dark mode</h4>
@@ -76,7 +76,7 @@ const ThemeButton = (props) => {
 	else
 		return (
 			<a
-				className='d-flex flex-row w-fitcontent ph-20px pv-15px ml-20px button'
+				className='d-flex flex-row w-fit-content ph-20px pv-15px ml-20px button'
 				onClick={toggleTheme}>
 				<LightModeIcon fill={fill} />
 				<h4 className={`ml-20px ${textTheme}`}>light mode</h4>
